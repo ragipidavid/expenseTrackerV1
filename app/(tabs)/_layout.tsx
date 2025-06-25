@@ -33,13 +33,14 @@ export default function TabLayout() {
         options={{
           title: "Expenses",
           tabBarIcon: ({ color }) => <TabBarIcon name="dollar" color={color} />,
+          headerShown: false,
         }}
       />
       <Tabs.Screen
         name="history"
         options={{
           title: "History",
-
+          headerShown: false,
           tabBarIcon: ({ color }) => <TabBarIcon name="book" color={color} />,
         }}
       />
@@ -47,7 +48,7 @@ export default function TabLayout() {
         name="profile"
         options={{
           title: "Profile",
-
+          headerShown: false,
           tabBarIcon: ({ color }) => <TabBarIcon name="user" color={color} />,
         }}
       />
