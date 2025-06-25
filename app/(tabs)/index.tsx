@@ -1,19 +1,62 @@
-import { ScrollView, StyleSheet } from "react-native";
+import { FlatList, ScrollView, StyleSheet } from "react-native";
 
 import EditScreenInfo from "@/components/EditScreenInfo";
 import { Text, View } from "@/components/Themed";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-export default function TabOneScreen() {
+const DATA = [
+  {
+    id: "1",
+    title: "First Item",
+    moneySpent: "$20",
+  },
+  {
+    id: "2",
+    title: "Second Item",
+    moneySpent: "$20",
+  },
+  {
+    id: "3",
+    title: "Third Item",
+    moneySpent: "$20",
+  },
+  {
+    id: "4",
+    title: "Third Item",
+    moneySpent: "$20",
+  },
+  {
+    id: "5",
+    title: "Third Item",
+    moneySpent: "$20",
+  },
+];
+
+type ItemProps = { title: string; moneySpent: string };
+
+const Item = ({ title, moneySpent }: ItemProps) => (
+  <View style={styles.item}>
+    <Text style={styles.title}>{title}</Text>
+    <Text>{moneySpent}</Text>
+  </View>
+);
+
+export default function ExpensesScreen() {
   return (
-    <SafeAreaView style={styles.mainContainer}>
+    <View style={styles.mainContainer}>
       <View style={styles.container1}>
         <Text style={styles.title}>You've spent $x in the last week</Text>
       </View>
-      <ScrollView style={styles.container2}>
-        <Text style={styles.title}>You've spent $x in the last week</Text>
-      </ScrollView>
-    </SafeAreaView>
+      <View style={styles.container2}>
+        <FlatList
+          data={DATA}
+          renderItem={({ item }) => (
+            <Item title={item.title} moneySpent={item.moneySpent} />
+          )}
+          keyExtractor={(item) => item.id}
+        />
+      </View>
+    </View>
   );
 }
 
@@ -35,5 +78,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
   },
-  separator: {},
+  item: {
+    backgroundColor: "#f9c2ff",
+    paddingVertical: 20,
+    paddingHorizontal: 40,
+    marginVertical: 8,
+    marginHorizontal: 16,
+  },
 });
